@@ -1,7 +1,7 @@
 # hangout-manager
 2020年サポーターズサマーハッカソン用リポジトリ
-メインリポジトリは[こちら](https://github.com/oba18/hangout-manager)
-モデルリポジトリは[こちら](https://github.com/rrrrind/hangout-manager)
+- [メインリポジトリ](https://github.com/oba18/hangout-manager)
+- [モデルリポジトリ](https://github.com/rrrrind/hangout-manager)
 
 ## 概要
 遊びや遊ぶ友達をレコメンドしてくれるWebアプリケーション
