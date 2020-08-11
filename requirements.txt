@@ -1,0 +1,7 @@
+# Editor
+jupyterlab
+
+# Libraries
+numpy
+pandas
+
