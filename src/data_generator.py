@@ -33,6 +33,14 @@ class DataGenerator(object):
         
         # 回答結果
         self.df_answer = pd.read_csv(answer_path)
+        # 明後日の予定の質問の選択肢の連番が4と5で逆になってしまっているので修正
+        def map_change_num(x):
+            if x == '5 : だいたい予定が詰まっている (25%)':
+                x = '4 : だいたい予定が詰まっている (25%)'
+            elif x == '4 : 朝から外せない予定がある (0%)':
+                x = '5 : 朝から外せない予定がある (0%)'
+            return x
+        self.df_answer.iloc[:, 17] = self.df_answer.iloc[:, 17].map(map_change_num)
         
         # 各種データセット
         self.df_static_info_binary = None
