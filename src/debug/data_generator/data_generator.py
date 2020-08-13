@@ -143,7 +143,7 @@ class DataGenerator(object):
         
         # 正解ラベルをベクトルに変換
         def map_label2vec(x):
-            vector = np.zeros(len(GENRE_LIST) - 1).astype(np.int64)
+            vector = np.zeros(len(self.GENRE_LIST) - 1).astype(np.int64)
             vector[x] = 1
             return vector
         df_dataset.iloc[:, -1] = df_dataset.iloc[:, -1].map(map_label2vec)
