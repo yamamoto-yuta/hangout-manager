@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import pandas as pd
 
@@ -41,6 +43,8 @@ class DataGenerator(object):
                 x = '5 : 朝から外せない予定がある (0%)'
             return x
         self.df_answer.iloc[:, 17] = self.df_answer.iloc[:, 17].map(map_change_num)
+        # 複数回答の区切り文字が";"と", "で２種類あるので", "に統一
+        self.df_answer.iloc[:, 6] = self.df_answer.iloc[:, 6].map(lambda x: x.replace(';', ', ') if type(x) is str else x)
         
         # 各種データセット
         self.df_static_info_binary = None
@@ -85,7 +89,7 @@ class DataGenerator(object):
         # 複数回答の列を抽出
         s_mlans = df_answer.iloc[:, 6]
         # nanを"なし"に変換
-        s_mlans = s_mlans.fillna('なし').map(lambda x: x.split(';'))
+        s_mlans = s_mlans.fillna('なし').map(lambda x: x.split(', '))
         # 遊びのジャンル（複数回答）を数値に変換
         def map_stoi(lst_ans):
             lst_ans_int = []
