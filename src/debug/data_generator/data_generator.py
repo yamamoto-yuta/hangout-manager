@@ -137,7 +137,19 @@ class DataGenerator(object):
         df_ans_bin.iloc[:, 19:25] : DataFrame
             動的情報を扱うNNの学習データセット
         """
-        return df_ans_bin.iloc[:, 15:19]
+        
+        # 回答結果から必要な列を抽出
+        df_dataset = df_ans_bin.iloc[:, 15:19]
+        
+        # 正解ラベルをベクトルに変換
+        def map_label2vec(x):
+            vector = np.zeros(len(GENRE_LIST) - 1).astype(np.int64)
+            vector[x] = 1
+            return vector
+        df_dataset.iloc[:, -1] = df_dataset.iloc[:, -1].map(map_label2vec)
+        
+        # 生成したデータセットを返す
+        return df_dataset
     
     def _generate_static_info(self, df_ans_bin):
         
